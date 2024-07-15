@@ -1,0 +1,43 @@
+:root {
+  --color-very-dark-blue: #0f1424;
+  --color-dark-blue: #1cf4a;
+  --color-desaturated-blue: #1cf4a;
+  --color-pale-blue: #1cf4a;
+  --color-white: #fff;
+  --default-padding: 2rem;
+  --default-radius: 0.8rem;
+  --s: 43px; /* control the size*/
+  --c1: #c01140;
+  --c2: #0f1d48;
+  --_g: #0000 52%, var(--c1) 54% 57%, #0000 59%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  display: inline-block;
+}
+
+.container {
+  display: grid;
+  min-height: 100vh;
+  background: radial-gradient(farthest-side at -33.33% 50%, var(--_g)) 0 calc(var(--s) / 2), radial-gradient(farthest-side at 50% 133.33%, var(--_g)) calc(var(--s) / 2) 0, radial-gradient(farthest-side at 133.33% 50%, var(--_g)), radial-gradient(farthest-side at 50% -33.33%, var(--_g)), var(--c2);
+  background-size: calc(var(--s) / 4.667) var(--s), var(--s) calc(var(--s) / 4.667);
+}
+
+.profile__pic {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 0.2rem solid #fff;
+}/*# sourceMappingURL=style.css.map */
