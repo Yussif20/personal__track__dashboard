@@ -1,3 +1,5 @@
+@import "mixins.scss";
+
 :root {
   --color-very-dark-blue: #0f1424;
   --color-dark-blue: #1c1f4a;
@@ -6,11 +8,6 @@
   --color-white: #fff;
   --default-padding: 2rem;
   --default-radius: 0.8rem;
-
-  --s: 43px; /* control the size*/
-  --c1: #c01140;
-  --c2: #0f1d48;
-  --_g: #0000 52%, var(--c1) 54% 57%, #0000 59%;
 }
 // CSS Reset
 * {
@@ -46,13 +43,16 @@ body {
   justify-content: center;
   padding-bottom: var(--default-padding);
 
-  @media (min-width: 600px) and (max-width: 900px) {
+  @include tablet {
     grid-template-columns: repeat(2, 1fr);
+  }
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
   }
 
   &::before {
     content: "";
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
     backdrop-filter: blur(0.2rem);
@@ -61,13 +61,15 @@ body {
 }
 .card {
   z-index: 1;
-
   background-color: var(--color-dark-blue);
   border-radius: var(--default-radius);
   overflow: hidden;
+  @include mobile-tablet {
+    border-radius: 0;
+  }
   &:not(:nth-child(1)) {
     padding: var(--default-padding);
-    @media (max-width: 900px) {
+    @include mobile-tablet {
       margin: 0 var(--default-padding);
     }
   }
@@ -77,15 +79,18 @@ body {
 .first__card {
   grid-column: 1/2;
   grid-row: 1/3;
-  @media (min-width: 600px) and (max-width: 900px) {
+  @include tablet {
     grid-column: 1/3;
     flex-direction: row;
+  }
+  @include mobile {
+    text-align: center;
   }
 
   & .top {
     padding: var(--default-padding);
     background-color: var(--color-desaturated-blue);
-    @media (min-width: 600px) and (max-width: 900px) {
+    @include tablet {
       display: flex;
       align-items: center;
       flex: 1;
@@ -94,10 +99,14 @@ body {
   & .bottom {
     padding: var(--default-padding);
     margin: auto 0;
-    @media (min-width: 600px) and (max-width: 900px) {
+    @include mobile-tablet {
       display: flex;
       align-items: center;
       flex: 1;
+    }
+    @include mobile {
+      flex-direction: row;
+      flex-wrap: wrap;
     }
   }
 }
@@ -164,17 +173,3 @@ body {
   background-color: var(--color-desaturated-blue);
   border-radius: var(--default-radius);
 }
-// background: radial-gradient(farthest-side at -33.33% 50%, var(--_g)) 0
-//     calc(var(--s) / 2),
-//   radial-gradient(farthest-side at 50% 133.33%, var(--_g)) calc(var(--s) / 2)
-//     0,
-//   radial-gradient(farthest-side at 133.33% 50%, var(--_g)),
-//   radial-gradient(farthest-side at 50% -33.33%, var(--_g)), var(--c2);
-// background-size: calc(var(--s) / 4.667) var(--s),
-//   var(--s) calc(var(--s) / 4.667);
-// &::before {
-//   content: "";
-//   width: 100%;
-//   height: 100%;
-//   position: absolute;
-// }
