@@ -33,17 +33,33 @@ body {
 }
 
 .container {
+  background: url(../assets/bg.jpg) var(--color-very-dark-blue);
+  background-size: 40rem;
   min-height: 100vh;
-  background: radial-gradient(farthest-side at -33.33% 50%, var(--_g)) 0 calc(var(--s) / 2), radial-gradient(farthest-side at 50% 133.33%, var(--_g)) calc(var(--s) / 2) 0, radial-gradient(farthest-side at 133.33% 50%, var(--_g)), radial-gradient(farthest-side at 50% -33.33%, var(--_g)), var(--c2);
-  background-size: calc(var(--s) / 4.667) var(--s), var(--s) calc(var(--s) / 4.667);
+  padding-bottom: var(--default-padding);
+  background-blend-mode: difference;
   color: var(--color-white);
   display: grid;
   grid-template-columns: repeat(4, 20rem);
   grid-template-rows: repeat(2, 1fr);
-  gap: 1rem;
-  align-items: center;
+  gap: var(--default-padding);
+  align-content: center;
   justify-content: center;
   padding-bottom: var(--default-padding);
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.container::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backdrop-filter: blur(0.2rem);
+          backdrop-filter: blur(0.2rem);
+  z-index: 0;
 }
 
 .card {
@@ -51,21 +67,49 @@ body {
   background-color: var(--color-dark-blue);
   border-radius: var(--default-radius);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .card:not(:nth-child(1)) {
   padding: var(--default-padding);
+}
+@media (max-width: 900px) {
+  .card:not(:nth-child(1)) {
+    margin: 0 var(--default-padding);
+  }
 }
 
 .first__card {
   grid-column: 1/2;
   grid-row: 1/3;
 }
+@media (min-width: 600px) and (max-width: 900px) {
+  .first__card {
+    grid-column: 1/3;
+    flex-direction: row;
+  }
+}
 .first__card .top {
   padding: var(--default-padding);
   background-color: var(--color-desaturated-blue);
 }
+@media (min-width: 600px) and (max-width: 900px) {
+  .first__card .top {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+}
 .first__card .bottom {
   padding: var(--default-padding);
+  margin: auto 0;
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .first__card .bottom {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
 }
 
 .name {
